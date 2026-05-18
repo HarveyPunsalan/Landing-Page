@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -51,7 +53,52 @@ const Navbar = () => {
         <button className="hidden md:block bg-[#8B5E3C] text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-[#7a5235] transition-colors">
           Order Now
         </button>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className="md:hidden text-[#8B5E3C]"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Drawer */}
+      {isOpen && (
+        <div className="md:hidden bg-[#FAF7F2] px-6 py-4 flex flex-col gap-4">
+          <a
+            href="#menu"
+            className="text-sm text-gray-700 hover:text-[#8B5E3C]"
+            onClick={() => setIsOpen(false)}
+          >
+            Menu
+          </a>
+          <a
+            href="#about"
+            className="text-sm text-gray-700 hover:text-[#8B5E3C]"
+            onClick={() => setIsOpen(false)}
+          >
+            About
+          </a>
+          <a
+            href="#reviews"
+            className="text-sm text-gray-700 hover:text-[#8B5E3C]"
+            onClick={() => setIsOpen(false)}
+          >
+            Reviews
+          </a>
+          <a
+            href="#contact"
+            className="text-sm text-gray-700 hover:text-[#8B5E3C]"
+            onClick={() => setIsOpen(false)}
+          >
+            Contact
+          </a>
+          <button className="bg-[#8B5E3C] text-white text-sm font-medium px-5 py-2 rounded-full w-full hover:bg-[#7a5235] transition-colors">
+            Order Now
+          </button>
+        </div>
+      )}
     </nav>
   );
 };
